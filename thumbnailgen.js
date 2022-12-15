@@ -12,17 +12,20 @@ const outputFolder = './output';
 fs.readdir(inputFolder, (err, files) => {
   if (err) {
     // handle error
+    throw err
   } else {
     // delete all the files in the output folder
     fs.readdir(outputFolder, (err, outputFiles) => {
       if (err) {
         // handle error
+        throw err
       } else {
         let filesDeleted = 0;
         outputFiles.forEach(outputFile => {
           fs.unlink(path.join(outputFolder, outputFile), err => {
             if (err) {
               // handle error
+              throw err
             } else {
               filesDeleted++;
               // check if all the files have been deleted
@@ -41,6 +44,7 @@ fs.readdir(inputFolder, (err, files) => {
                     .toFile(path.join(outputFolder, `${fileName}-thumbnail.png`), (err, info) => {
                       if (err) {
                         // handle error
+                        throw err
                       } else {
                         // thumbnail was generated successfully
                       }
